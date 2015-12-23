@@ -1,0 +1,36 @@
+icinga2:
+  image: frosquin/icinga2:latest
+  container_name: icinga
+  hostname: icinga
+  restart: always
+  env_file: settings.env
+  volumes:
+    - icinga2-cmd:/var/run/icinga2/cmd
+    - /etc/docker/icinga2/conf.d:/etc/icinga2/conf.d
+    - /dev/log:/dev/log
+
+postgres:
+  image: postgres:9.3
+  container_name: icinga-postgres
+  hostname: icinga-postgres
+  restart: always
+  environment:
+    PGDATA: /pgdata
+  env_file: settings.env
+  ports:
+  - "172.17.0.1:5432:5432"
+  volumes:
+    - postgres-data:/pgdata
+    - ./pgsql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+
+icingaweb2:
+  image: frosquin/icingaweb2:latest
+  container_name: icingaweb
+  hostname: icingaweb
+  restart: always
+  env_file: settings.env
+  ports:
+   - "80:80"
+  volumes:
+    - icinga2-cmd:/var/run/icinga2/cmd
