@@ -15,7 +15,7 @@ RUN apt-get update \
 RUN apt-get $APT_OPTIONS install \
         icinga2 \
         nagios-plugins nagios-snmp-plugins nagios-plugins-contrib \
-        libnagios-object-perl libnagios-plugins-perl \
+        libnagios-object-perl libnagios-plugin-perl \
         libtimedate-perl liblwp-useragent-determined-perl libipc-run-perl \
         libswitch-perl \
         snmp nagios-snmp-plugins libnet-snmp-perl python \
