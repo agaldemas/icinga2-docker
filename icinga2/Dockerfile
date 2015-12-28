@@ -19,7 +19,7 @@ RUN apt-get $APT_OPTIONS install \
         libtimedate-perl liblwp-useragent-determined-perl libipc-run-perl \
         libswitch-perl \
         snmp nagios-snmp-plugins libnet-snmp-perl python \
-        freeipmi-tools whois \
+        freeipmi-tools whois dig \
         openssl ca-certificates \
     && apt-get $APT_OPTIONS install icinga2-ido-mysql \
     && apt-get $APT_OPTIONS install icinga2-ido-pgsql \
