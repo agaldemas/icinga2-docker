@@ -15,14 +15,21 @@ RUN apt-get update \
 RUN apt-get $APT_OPTIONS install \
         icinga2 \
         nagios-plugins nagios-snmp-plugins nagios-plugins-contrib \
+        nagios-plugins-extra \
         libnagios-object-perl libnagios-plugin-perl \
         libtimedate-perl liblwp-useragent-determined-perl libipc-run-perl \
         libswitch-perl \
         snmp nagios-snmp-plugins libnet-snmp-perl python \
         freeipmi-tools whois dnsutils \
         openssl ca-certificates \
+        unzip \
     && apt-get $APT_OPTIONS install icinga2-ido-mysql \
     && apt-get $APT_OPTIONS install icinga2-ido-pgsql \
+    && wget https://github.com/calmh/unifi-api/archive/master.zip -o /tmp/unifi.zip \
+    && cd /tmp \
+    && unzip /tmp/unifi.zip \
+    && cd /tmp/unifi-api-master \
+    && python setup.py install \
     && apt-get purge -y -q --auto-remove gcc make wget
 
 ## Fixes for broken software...
