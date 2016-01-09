@@ -25,9 +25,9 @@ RUN apt-get $APT_OPTIONS install \
         unzip \
     && apt-get $APT_OPTIONS install icinga2-ido-mysql \
     && apt-get $APT_OPTIONS install icinga2-ido-pgsql \
-    && wget https://github.com/calmh/unifi-api/archive/master.zip -o /tmp/unifi.zip \
+    && wget -O /tmp/unifi.zip https://github.com/calmh/unifi-api/archive/master.zip \
     && cd /tmp \
-    && unzip /tmp/unifi.zip \
+    && unzip unifi.zip \
     && cd /tmp/unifi-api-master \
     && python setup.py install \
     && apt-get purge -y -q --auto-remove gcc make wget
