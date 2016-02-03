@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV APT_OPTIONS "-y --no-install-recommends --no-install-suggests -q"
 
 RUN apt-get update \
-    && apt-get $APT_OPTIONS install wget \
-    && wget -O - http://packages.icinga.org/icinga.key | apt-key add - \
+    && apt-get $APT_OPTIONS install wget ca-certificates \
+    && wget -O - https://packages.icinga.org/icinga.key | apt-key add - \
     && echo "deb http://packages.icinga.org/ubuntu icinga-trusty main" > /etc/apt/sources.list.d/icinga.list \
     && echo "deb-src http://packages.icinga.org/ubuntu icinga-trusty main" >> /etc/apt/sources.list.d/icinga.list \
     && apt-get update
@@ -21,7 +21,7 @@ RUN apt-get $APT_OPTIONS install \
         libswitch-perl \
         snmp nagios-snmp-plugins libnet-snmp-perl python \
         freeipmi-tools whois dnsutils \
-        openssl ca-certificates \
+        openssl \
         unzip \
     && apt-get $APT_OPTIONS install icinga2-ido-mysql \
     && apt-get $APT_OPTIONS install icinga2-ido-pgsql \

@@ -7,8 +7,8 @@ ENV APT_OPTIONS "-y --no-install-recommends --no-install-suggests -q"
 
 # ca-certificates icingaweb2
 RUN apt-get update \
-    && apt-get $APT_OPTIONS install wget \
-    && wget -O - http://packages.icinga.org/icinga.key | apt-key add - \
+    && apt-get $APT_OPTIONS install wget ca-certificates \
+    && wget -O - https://packages.icinga.org/icinga.key | apt-key add - \
     && echo "deb http://packages.icinga.org/ubuntu icinga-trusty main" > /etc/apt/sources.list.d/icinga.list \
     && echo "deb-src http://packages.icinga.org/ubuntu icinga-trusty main" >> /etc/apt/sources.list.d/icinga.list \
     && apt-get update
